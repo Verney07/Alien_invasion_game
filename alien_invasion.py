@@ -12,6 +12,9 @@ class AlienInvasion():
         # Initialize the background:
         pygame.init()
 
+        # Define 'clock' for controlling the frame rate:
+        self.clock = pygame.time.Clock()
+
         # window size:
         self.screen = pygame.display.set_mode((1200, 800))
 
@@ -30,6 +33,9 @@ class AlienInvasion():
 
             # Make the most recently drawn screen vsible.
             pygame.display.flip()
+
+            # Create an instance of class Clock:
+            self.clock.tick(60)
 
 
 if __name__ == '__main__':
