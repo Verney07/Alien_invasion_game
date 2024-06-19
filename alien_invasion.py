@@ -31,33 +31,36 @@ class AlienInvasion():
         # Make an instance-attribute of 'Ship' class.
         self.ship = Ship(self)
 
-        # Set the background color: mix of red, green and blue.
-        # (red, green, blue)
-        self.bg_color = (230, 230, 230)  # ligth gray color
-
     def run_game(self):
         """Start the main loop for the game."""
         # Control the game
 
         while True:
-            # Watch for keyboard and mouse events.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:  # event
-                    # exit the game:
-                    sys.exit()
-
-            # Redraw the screen during each pass through the loop:
-            # (Using the instance-attribute)
-            self.screen.fill(self.settings.bg_color)
-
-            # Draw the ship on bottom of the background:
-            self.ship.blitme()
-
-            # Make the most recently drawn screen vsible.
-            pygame.display.flip()
-
+            # Helper method:
+            self._check_events()
+            self._update_screen()
             # Create an instance of class Clock:
             self.clock.tick(60)
+
+    def _check_events(self):
+        """Respond to keypresses and mouse events"""
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # event
+                # exit the game:
+                sys.exit()
+
+    def _update_screen(self):
+        """Update images on the screen and flip to the new screen"""
+        # Redraw the screen during each pass through the loop:
+        # (Using the instance-attribute)
+        self.screen.fill(self.settings.bg_color)
+
+        # Draw the ship on bottom of the background:
+        self.ship.blitme()
+
+        # Make the most recently drawn screen vsible.
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
