@@ -50,6 +50,13 @@ class AlienInvasion():
                 # exit the game:
                 sys.exit()
 
+            # Pygame detects a KEYDOWN event:
+            elif event.type == pygame.KEYDOWN:
+                # Verify if the player presses the right arrow key:
+                if event.key == pygame.K_RIGHT:
+                    # Move the ship to the right.
+                    self.ship.rect.x += 1
+
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
         # Redraw the screen during each pass through the loop:
