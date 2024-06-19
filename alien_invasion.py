@@ -38,6 +38,9 @@ class AlienInvasion():
         while True:
             # Helper method:
             self._check_events()
+            # Call the ship's update() method on each pass through the loop:
+            self.ship.update()
+
             self._update_screen()
             # Create an instance of class Clock:
             self.clock.tick(60)
@@ -51,11 +54,18 @@ class AlienInvasion():
                 sys.exit()
 
             # Pygame detects a KEYDOWN event:
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:  # press the key
+
                 # Verify if the player presses the right arrow key:
                 if event.key == pygame.K_RIGHT:
-                    # Move the ship to the right.
-                    self.ship.rect.x += 1
+                    # Change the flag 'moving_right' to True:
+                    self.ship.moving_right = True
+
+            elif event.type == pygame.KEYUP:  # release the key
+                # Verify if the player releases the right arrow key:
+                if event.key == pygame.K_RIGHT:
+                    # Change the flag 'moving_right' to False:
+                    self.ship.moving_right = False
 
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
