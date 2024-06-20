@@ -22,9 +22,19 @@ class AlienInvasion():
         # Make an instance-attribue of 'Settings' class (settings module):
         self.settings = Settings()
 
-        # Define window size and background color with instance-attribute:
-        self.screen = pygame.display.set_mode((self.settings.screen_width,
-                                               self.settings.screen_height))
+        # ---------------------------------------------------------------------
+        # # Define window size and background color with instance-attribute:
+        # self.screen = pygame.display.set_mode((self.settings.screen_width,
+        #                                        self.settings.screen_height))
+
+        # ---------------------------------------------------------------------
+
+        # FULLSCREEN mode:
+        # Create the screen surface:
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # Update the settings after the creation of the screen:
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
 
         pygame.display.set_caption("Alien Invasion")
 
@@ -71,6 +81,10 @@ class AlienInvasion():
         elif event.key == pygame.K_LEFT:
             # Change the flag 'moving_left' to True:
             self.ship.moving_left = True
+
+        # Pressing Q to quit the game:
+        elif event.key == pygame.K_q:
+            sys.exit()
 
     def _check_keyup_events(self, event):
         """Respond to releases."""
