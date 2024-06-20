@@ -11,3 +11,6 @@ class Settings:
         self.screen_height = 800
         # Mix of red, green and blue
         self.bg_color = (230, 230, 230)
+
+        # Ship settings
+        self.ship_speed = 1.5  # pixel per cycle
