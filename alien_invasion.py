@@ -23,19 +23,18 @@ class AlienInvasion():
         self.settings = Settings()
 
         # ---------------------------------------------------------------------
-        # # Define window size and background color with instance-attribute:
-        # self.screen = pygame.display.set_mode((self.settings.screen_width,
-        #                                        self.settings.screen_height))
+        # Define window size and background color with instance-attribute:
+        self.screen = pygame.display.set_mode((self.settings.screen_width,
+                                               self.settings.screen_height))
+
+        # # FULLSCREEN mode:-------------------------------------------------
+        # # Create the screen surface:
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # # Update the settings after the creation of the screen:
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
 
         # ---------------------------------------------------------------------
-
-        # FULLSCREEN mode:
-        # Create the screen surface:
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        # Update the settings after the creation of the screen:
-        self.settings.screen_width = self.screen.get_rect().width
-        self.settings.screen_height = self.screen.get_rect().height
-
         pygame.display.set_caption("Alien Invasion")
 
         # Make an instance-attribute of 'Ship' class.
