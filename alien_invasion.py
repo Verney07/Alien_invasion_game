@@ -92,6 +92,10 @@ class AlienInvasion():
         elif event.key == pygame.K_q:
             sys.exit()
 
+        # Call _fire_bullet() when spacebar is pressed.
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+
     def _check_keyup_events(self, event):
         """Respond to releases."""
 
@@ -105,11 +109,24 @@ class AlienInvasion():
             # Change the flag 'moving_left' to False:
             self.ship.moving_left = False
 
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group"""
+
+        # Make the 'new_bullet' instance of 'Bullet' class:
+        new_bullet = Bullet(self)
+
+        # Ad to the group 'bullets' using the add() method:
+        self.bullets.add(new_bullet)
+
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
         # Redraw the screen during each pass through the loop:
         # (Using the instance-attribute)
         self.screen.fill(self.settings.bg_color)
+
+        # Draw all fired bullets to the screen.
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         # Draw the ship on bottom of the background:
         self.ship.blitme()
