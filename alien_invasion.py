@@ -121,11 +121,14 @@ class AlienInvasion():
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group"""
 
-        # Make the 'new_bullet' instance of 'Bullet' class:
-        new_bullet = Bullet(self)
+        # Limit group o 3 fired bullets. News bullet will appear, when the old
+        # pass through the screen's top.
+        if len(self.bullets) < self.settings.bullets_allowed:
+            # Make the 'new_bullet' instance of 'Bullet' class:
+            new_bullet = Bullet(self)
 
-        # Ad to the group 'bullets' using the add() method:
-        self.bullets.add(new_bullet)
+            # Ad to the group 'bullets' using the add() method:
+            self.bullets.add(new_bullet)
 
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
