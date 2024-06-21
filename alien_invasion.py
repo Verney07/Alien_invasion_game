@@ -6,6 +6,7 @@ import pygame
 from settings import Settings
 
 from ship import Ship
+from bullet import Bullet
 
 
 class AlienInvasion():
@@ -40,6 +41,9 @@ class AlienInvasion():
         # Make an instance-attribute of 'Ship' class.
         self.ship = Ship(self)
 
+        # Create the group that holds the bullets:
+        self.bullets = pygame.sprite.Group()
+
     def run_game(self):
         """Start the main loop for the game."""
         # Control the game
@@ -49,6 +53,9 @@ class AlienInvasion():
             self._check_events()
             # Call the ship's update() method on each pass through the loop:
             self.ship.update()
+
+            # Update the position of the bullets on each pass through:
+            self.bullets.update()
 
             self._update_screen()
             # Create an instance of class Clock:
