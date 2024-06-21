@@ -53,18 +53,8 @@ class AlienInvasion():
             self._check_events()
             # Call the ship's update() method on each pass through the loop:
             self.ship.update()
-
             # Update the position of the bullets on each pass through:
-            self.bullets.update()
-
-            # Get rid of bullets that have disappeared:-----------
-            # Use the copy() method to set up the for loop:
-            for bullet in self.bullets.copy():
-
-                # Verify if the bullet it has disappeared off the screen's top:
-                if bullet.rect.bottom <= 0:
-                    # Remove the bullet.
-                    self.bullets.remove(bullet)
+            self._update_bullets()
 
             self._update_screen()
             # Create an instance of class Clock:
@@ -129,6 +119,19 @@ class AlienInvasion():
 
             # Ad to the group 'bullets' using the add() method:
             self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        """Update position of bullets and get rid of old bullets."""
+        # Update the position of the bullets on each pass through:
+        self.bullets.update()
+
+        # Get rid of bullets that have disappeared:-----------
+        # Use the copy() method to set up the for loop:
+        for bullet in self.bullets.copy():
+            # Verify if the bullet it has disappeared off the screen's top:
+            if bullet.rect.bottom <= 0:
+                # Remove the bullet.
+                self.bullets.remove(bullet)
 
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
