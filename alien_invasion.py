@@ -156,21 +156,30 @@ class AlienInvasion():
             space at the right edge of the screen, enter the loop and add
             another alien to the fleet
             """
-
-            #Create an alien in the correct position whenever there's enough 
-            # horizontal space          
-            new_alien=Alien(self)
-
-            #Set the precise horizontal position on the current value
-            new_alien.x=current_x
-            #Position the alien's rect at this same x-value.
-            new_alien.rect.x=current_x
-            #Add the new alien to the group.
-            self.aliens.add(new_alien)
+            #Call the helper '_create_alien' method:
+            self._create_alien(current_x)
 
             #Increment the value in two alien widths to the horizontal
             #position to move past the alien just added.
-            current_x +=2*alien_width
+            current_x += 2*alien_width
+
+    
+    def _create_alien(self, x_position):
+        """Create an alien and place it in the row."""
+
+            #Create an alien in the correct position whenever there's enough 
+            # horizontal space          
+        new_alien=Alien(self)
+        
+        #Set the precise horizontal position on the current value
+        new_alien.x=x_position
+       
+        #Position the alien's rect at this same x-value.
+        new_alien.rect.x=x_position
+
+        #Add the new alien to the group.
+        self.aliens.add(new_alien)
+
     
     def _update_screen(self):
         """Update images on the screen and flip to the new screen"""
