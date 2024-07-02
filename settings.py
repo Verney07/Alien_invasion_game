@@ -23,3 +23,7 @@ class Settings:
 
         # Limits the player to three bullets at a time.
         self.bullets_allowed = 3
+
+        #Alien settings: alien's speed:
+        self.alien_speed=1.0
+

@@ -61,6 +61,8 @@ class AlienInvasion():
             self.ship.update()
             # Update the position of the bullets on each pass through:
             self._update_bullets()
+            #Update the position of each alien:
+            self._update_aliens()
 
             self._update_screen()
             # Create an instance of class Clock:
@@ -138,6 +140,10 @@ class AlienInvasion():
             if bullet.rect.bottom <= 0:
                 # Remove the bullet.
                 self.bullets.remove(bullet)
+    
+    def _update_aliens(self):
+        """Update the posiitons of all aliens in the fleet."""
+        self.aliens.update()
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
