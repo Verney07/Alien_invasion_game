@@ -133,7 +133,6 @@ class AlienInvasion:
                 # Remove the bullet.
                 self.bullets.remove(bullet)
         
-        
         self._check_bullet_alien_collisions()
          
     def _check_bullet_alien_collisions(self):
@@ -150,13 +149,15 @@ class AlienInvasion:
             #Fills the screen with aliens again
             self._create_fleet()
     
-
-      
     def _update_aliens(self):
         """Update the positions of all aliens in the fleet."""
         """Check if the fleet is at an edge, then update positions."""
         self._check_fleet_edges()
         self.aliens.update()
+
+        #Look for alien-ship collisions.
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!!")
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
