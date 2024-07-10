@@ -14,6 +14,8 @@ class Settings:
 
         # Ship settings
         self.ship_speed = 1.5  # pixel per cycle
+        # Number of ships the player starts with.
+        self.ship_limit = 3
 
         # Bullet settings: create a dark gray bullets.
         self.bullet_speed = 2.5

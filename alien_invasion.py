@@ -1,9 +1,12 @@
 """Main program to 'Alien Invasion' game"""
 import sys
+#We can pause the game for a moment when the ship is hit.
+from time import sleep
 
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -35,6 +38,9 @@ class AlienInvasion:
         #---------------------------------------------------------------
 
         pygame.display.set_caption("Alien Invasion")
+
+        #Create an instance to store game statistics.
+        self.stats = GameStats(self)
 
         # Make an instance-attribute of 'Ship' class.
         self.ship = Ship(self)
@@ -157,7 +163,24 @@ class AlienInvasion:
 
         #Look for alien-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
+            #Call '_ship_hit()' method when an alien hits the ship.
+            self._ship_hit()
+
+    def _ship_hit(self):
+        """Respond to the ship being hit by an alien."""
+        #Decrement ships_lef.
+        self.stats.ships_left -= 1
+
+        #Get rid of any remaining bullets and aliens.
+        self.bullets.empty()
+        self.aliens.empty()
+
+        #Create new fleet and center the ship.
+        self._create_fleet()
+        self.ship.center_ship()
+
+        #Pauses program execution for half second.
+        sleep(0.5)
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
