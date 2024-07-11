@@ -90,6 +90,23 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:    # release the key
                 self._check_keyup_events(event)
 
+            # Pygame detects a 'MOUSEBUTTONDOWN' event when player clicks
+            # anywhere on the screen.
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Returns a tuple containing the mouse cursor's coordinates.
+                mouse_pos = pygame.mouse.get_pos()
+                # Send the 'x' and 'y' values to the method to verify if the player
+                # clicks on the 'Play' botton:
+                self._check_play_button(mouse_pos)
+    
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks 'Play'."""
+        # Check whether the point of the mouse click overlaps the region 
+        # defined by the 'Play' button's rect: collidepoint
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True
+
+
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
         # Verify if the player presses the right arrow key:
