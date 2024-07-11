@@ -51,18 +51,23 @@ class AlienInvasion:
 
         self._create_fleet()
 
+        # Start Alien Invasion in an active state.
+        self.game_active = True
+
     def run_game(self):
         """Start the main loop for the game."""
         # Control the game
         while True:
             # Helper method:
             self._check_events()
-            # Call the ship's update() method on each pass through the loop:
-            self.ship.update()
-             # Update the position of the bullets on each pass through:
-            self._update_bullets()
-            #Update the position of each alien:
-            self._update_aliens()
+
+            if self.game_active:
+                # Call the ship's update() method on each pass through the loop:
+                self.ship.update()
+                # Update the position of the bullets on each pass through:
+                self._update_bullets()
+                #Update the position of each alien:
+                self._update_aliens()
            
             self._update_screen()
             # Create an instance of class Clock:
@@ -171,19 +176,24 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Respond to the ship being hit by an alien."""
-        #Decrement ships_lef.
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            #Decrement ships_lef.
+            self.stats.ships_left -= 1
 
-        #Get rid of any remaining bullets and aliens.
-        self.bullets.empty()
-        self.aliens.empty()
+            #Get rid of any remaining bullets and aliens.
+            self.bullets.empty()
+            self.aliens.empty()
 
-        #Create new fleet and center the ship.
-        self._create_fleet()
-        self.ship.center_ship()
-
-        #Pauses program execution for half second.
-        sleep(0.5)
+            #Create new fleet and center the ship.
+            self._create_fleet()
+            self.ship.center_ship()
+            #Pauses program execution for half second.
+            sleep(0.5)
+        
+        # Set 'game_active' to 'False' when the player has used up
+        # all their ships:
+        else:
+            self.game_active = False
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
