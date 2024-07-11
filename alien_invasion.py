@@ -6,11 +6,11 @@ from time import sleep
 import pygame
 
 from settings import Settings
-from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
-
+from game_stats import GameStats
+from button import Button
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -53,6 +53,9 @@ class AlienInvasion:
 
         # Start Alien Invasion in an inactive state.
         self.game_active = False
+
+        # Create an instance of 'Button' class (it doesn't draw the button)
+        self.play_button = Button(self, "Play")
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -212,11 +215,10 @@ class AlienInvasion:
             
             #Keep adding aliens 'while' there's enough room to place one.
             while current_x < (self.settings.screen_width - 2 * alien_width):
-                """As long as there's at least two aliens width's worth of
-                space at the right edge of the screen, enter the loop and add
-                another alien to the fleet
-                """
-
+                # As long as there's at least two aliens width's worth of
+                # space at the right edge of the screen, enter the loop and add
+                # another alien to the fleet
+                
                 #Call the helper '_create_alien' method and pass it the 'y' value
                 # and 'x' position.
                 self._create_alien(current_x, current_y)
@@ -292,7 +294,12 @@ class AlienInvasion:
 
         #Draw the alien on upper-left area of the screen:
         self.aliens.draw(self.screen)
-       
+
+        # Make the button visible to draw it after the other elements
+        # have been drawn. The button appears when the game is inactive.
+        if not self.game_active:
+            self.play_button.draw_button()
+        
         # Make the most recently drawn screen vsible.
         pygame.display.flip()
 
