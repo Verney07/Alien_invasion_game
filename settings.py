@@ -27,8 +27,11 @@ class Settings:
         # each time an alien reaches either edge.
         self.fleet_drop_speed=10
         
-        #How quickly the game speeds up
+        # How quickly the game speeds up
         self.speedup_scale = 1.1
+
+        # How quickly the alien point values increase.
+        self.score_scale = 1.5
 
         # Initialize the values for attributes that need to change throughout
         # the game.
@@ -50,8 +53,12 @@ class Settings:
     def increase_speed(self):
         """
         Increase speed settings eahc time the player reaches a new level
+        and alien point value.
         """
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
+        # Increase alien point value: use the 'int' function to increase
+        # the point value by whole integers.
+        self.alien_points = int(self.alien_points * self.score_scale)
 
