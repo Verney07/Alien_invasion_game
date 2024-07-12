@@ -103,7 +103,14 @@ class AlienInvasion:
         """Start a new game when the player clicks 'Play'."""
         # Check whether the point of the mouse click overlaps the region 
         # defined by the 'Play' button's rect: collidepoint
-        if self.play_button.rect.collidepoint(mouse_pos):
+        
+        # Store the boolean's value 'True' or 'False'
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+
+        # The game will restart onley if 'Play' is clicked and
+        # the game_active is False.
+        if button_clicked and not self.game_active:
+        
             # Reset the game statistics and gives the player three new ships.
             self.stats.reset_stats()
             self.game_active = True
