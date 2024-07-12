@@ -120,6 +120,8 @@ class AlienInvasion:
 
             # Reset the game statistics and gives the player three new ships.
             self.stats.reset_stats()
+            # Preps the scoreboard with a score of 0.
+            self.sb.prep_score()
             self.game_active = True
 
             # Get rid of any remaining bullets and aliens.
