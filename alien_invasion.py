@@ -199,6 +199,9 @@ class AlienInvasion:
             self.bullets.empty()
             #Fills the screen with aliens again
             self._create_fleet()
+
+            #Increase the game's tempo when the last alien has been shot down:
+            self.settings.increase_speed()
     
     def _update_aliens(self):
         """Update the positions of all aliens in the fleet."""
