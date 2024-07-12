@@ -10,6 +10,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 
 class AlienInvasion:
@@ -39,8 +40,10 @@ class AlienInvasion:
 
         pygame.display.set_caption("Alien Invasion")
 
-        #Create an instance to store game statistics.
+        #Create an instance to store game statistics and create a 
+        # scoreboard.
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         # Make an instance-attribute of 'Ship' class.
         self.ship = Ship(self)
@@ -114,7 +117,7 @@ class AlienInvasion:
             # Reset the game settings: return any changed settings to their
             # initial values each time the player starts a new game.
             self.settings.initialize_dynamic_settings()       
-             
+
             # Reset the game statistics and gives the player three new ships.
             self.stats.reset_stats()
             self.game_active = True
@@ -341,6 +344,9 @@ class AlienInvasion:
 
         #Draw the alien on upper-left area of the screen:
         self.aliens.draw(self.screen)
+
+        # Draw the score information: draw before 'Play' button.
+        self.sb.show_score()
 
         # Make the button visible to draw it after the other elements
         # have been drawn. The button appears when the game is inactive.
