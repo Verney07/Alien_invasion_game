@@ -110,7 +110,11 @@ class AlienInvasion:
         # The game will restart onley if 'Play' is clicked and
         # the game_active is False.
         if button_clicked and not self.game_active:
-        
+
+            # Reset the game settings: return any changed settings to their
+            # initial values each time the player starts a new game.
+            self.settings.initialize_dynamic_settings()       
+             
             # Reset the game statistics and gives the player three new ships.
             self.stats.reset_stats()
             self.game_active = True
