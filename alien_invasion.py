@@ -206,7 +206,9 @@ class AlienInvasion:
             # When a bullet hits an alien, Pygame returns a collisions dictionary.
             # Check whether the dictionary exists and if it does, tehe alien's
             # value is added to the score:
-            self.stats.score += self.settings.alien_points
+            # Loop through all values in the dictionary:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
 
         #Check whether the aliens group is empty.
