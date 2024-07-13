@@ -20,7 +20,7 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
 
-        # Limits the player to three bullets at a time.
+        # Limits the player to shoot more of three bullets at a time.
         self.bullets_allowed = 3
 
         # Alien settings: Control the speed of the fleet drops down 
