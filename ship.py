@@ -1,13 +1,16 @@
 """Module that manage the most behavior of the player's ship."""
 import pygame
+from pygame.sprite import Sprite
 
 
-class Ship():
+class Ship(Sprite):
     """A class to manage the ship."""
 
     def __init__(self, ai_game):
         """Initialize the ship and set it's starting position."""
-
+        # Call 'super()'.
+        super().__init__()
+        
         # Assign the screen to an attribute of Ship:
         self.screen = ai_game.screen
 
