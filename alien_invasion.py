@@ -210,6 +210,10 @@ class AlienInvasion:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
+            # Call the 'check_high_score()' when the 'collisions' dictionary is
+            # present and after updating the score for all the aliens that have
+            # been hit.
+            self.sb.check_high_score()
 
         #Check whether the aliens group is empty.
         if not self.aliens:
